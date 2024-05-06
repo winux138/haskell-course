@@ -36,3 +36,11 @@ inOrder :: MessageTree -> [LogMessage]
 inOrder Leaf = []
 inOrder (Node left logMsg right) = inOrder left ++ [logMsg] ++ inOrder right
 
+-- Exercise 5
+--
+whatWentWrong :: [LogMessage] -> [String]
+whatWentWrong [] = []
+whatWentWrong ((LogMessage (Error n) _ts msg):xs)
+        | n > 50 = msg : whatWentWrong xs
+        | otherwise =  whatWentWrong xs
+whatWentWrong (_:xs) = whatWentWrong xs
